@@ -10,4 +10,6 @@ class Course extends Model {
 
     public function teacher()  { return $this->belongsTo(User::class,'teacher_id'); }
     public function enrollments() { return $this->hasMany(Enrollment::class,'course_id'); }
+    public function materials(){ return $this->hasMany(\App\Models\Material::class)->latest();}
+    public function assignments(){ return $this->hasMany(Assignment::class);}
 }

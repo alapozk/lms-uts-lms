@@ -38,5 +38,12 @@ class CourseController extends Controller {
     private function authorizeOwner(Course $c, $uid) {
         if ($c->teacher_id !== $uid) abort(403);
     }
+
+    public function show(Request $r, Course $course)
+    {
+        $this->authorizeOwner($course, $r->user()->id);
+        return view('teacher.course-show', compact('course'));
+    }
+
 }
 
